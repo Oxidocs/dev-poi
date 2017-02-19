@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Facebook, NativeStorage } from 'ionic-native';
+import { Facebook } from 'ionic-native';
 import { NavController, NavParams, MenuController, Events} from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

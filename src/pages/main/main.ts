@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Facebook, NativeStorage } from 'ionic-native';
-import { LoginPage } from '../login/login';
+import { NativeStorage } from 'ionic-native';
 
 /*
   Generated class for the Main page.

@@ -3,7 +3,6 @@ import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar, Splashscreen, NativeStorage, Facebook } from 'ionic-native';
 
 import { LoginPage } from '../pages/login/login';
-import { Page2 } from '../pages/page2/page2';
 import { MainPage } from '../pages/main/main';
 
 
@@ -26,8 +25,7 @@ export class MyApp {
     });
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Rutas', component: MainPage },
-      { title: 'Page Two', component: Page2 }
+      { title: 'Rutas', component: MainPage }
     ];
 
   }
