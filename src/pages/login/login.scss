@@ -1,3 +1,94 @@
 page-login {
 
 }
+.fondo{
+// background-image: url('../assets/img/fondo_rojo_oscuro.jpeg');
+// background-repeat: no-repeat;
+// background-size:cover;
+  background-color: #e75244;
+}
+.items{
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+.items:hover{
+
+  background-color: rgba(0, 0, 0, 0.14) !important;
+
+}
+.item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
+
+  box-shadow: none;
+}
+.item-md.item-input.input-has-focus .item-inner {
+  border-bottom-color: #dedede;
+  box-shadow: inset 0 -3px 0 0 #dedede;
+}
+.list-md .item-input.input-has-focus:last-child {
+  border-bottom-color: #dedede;
+  box-shadow: inset 0 -3px 0 0 #dedede;
+}
+.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child {
+  box-shadow: none;
+}
+.list-md .item-input.input-has-focus:last-child .item-inner {
+  box-shadow: inherit;
+}
+.list-md .item-block .item-inner {
+  border-bottom: 0px solid #dedede !important;
+}
+.item-md {
+  position: relative;
+  padding-right: 0;
+  padding-left: 16px;
+  font-size: 1.6rem;
+  font-weight: normal;
+  text-transform: none;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: none;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.logo{
+  height: auto;
+  width: 60%;
+  margin: auto;
+  display: block;
+  padding-top: 23%;
+  padding-bottom: 23%;
+}
+.btn_ingresar{
+  background-color: #e09191;
+  font-weight: 900;
+  box-shadow: none;
+  margin: 0 auto;
+  width: 96%;
+
+}
+.btn_ingresar_fbk{
+  background-color: #365B93;
+  font-weight: 900;
+  box-shadow: none;
+  margin: 0 auto;
+  width: 96%;
+}
+.btn_crear{
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+}
+
+.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+  box-shadow: none;
+}
+.item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+  color: #fff;
+}
+.item .item-content.activated {
+    color: #493F0B;
+    font-weight: bold;
+    border-color: #eee;
+    background-color: #fafafa;
+}
