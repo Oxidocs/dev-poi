@@ -14,7 +14,7 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-.ios .menu-inner, .md .menu-inner {
+.ios .menu-inner, .md .menu-inner, .wp .menu-inner {
     background: rgba(255, 255, 255, 0);
 }
 .item-md ion-avatar img {
