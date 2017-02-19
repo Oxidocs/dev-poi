@@ -1,5 +1,12 @@
 keytool -genkey -v -keystore poi.keystore -alias poi -keyalg RSA -keysize 2048 -validity 10000
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore poi.keystore HelloWorld-release-unsigned.apk alias_name
- facebook
+
+cordova build --release android --prod
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore poi.keystore platforms/android/build/outputs/apk/android-release-unsigned.apk poi
+
+/Users/ricardo/Library/Android/sdk/build-tools/25.0.0/zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk "Poi".apk
+
+ facebook:
+
  laptopr:dev-poi ricardo$ keytool -exportcert -alias androiddebugkeypoi -keystore debugpoi.keystore | openssl sha1 -binary | openssl base64
 fb4KqC/uJEG0a3bPivPzGhTMSgs=
