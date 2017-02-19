@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { NativeStorage } from 'ionic-native';
+import { CircuitosPage } from '../circuitos/circuitos'
+
 
 /*
   Generated class for the Main page.
@@ -35,5 +37,8 @@ export class MainPage {
     });
   }
 
+  toCircuitos(titulo){
+    this.navCtrl.push(CircuitosPage, {titulo: titulo});
+  }
 
 }

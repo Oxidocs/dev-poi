@@ -5,13 +5,15 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { Usuario } from '../providers/usuario';
 import { MainPage } from '../pages/main/main';
+import { CircuitosPage } from '../pages/circuitos/circuitos';
 
 @NgModule({
 
   declarations: [
     MyApp,
     LoginPage,
-    MainPage
+    MainPage,
+    CircuitosPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -20,7 +22,8 @@ import { MainPage } from '../pages/main/main';
   entryComponents: [
     MyApp,
     LoginPage,
-    MainPage
+    MainPage,
+    CircuitosPage
   ],
   providers: [
     Usuario,

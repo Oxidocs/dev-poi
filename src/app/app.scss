@@ -24,7 +24,17 @@
     overflow: hidden;
     margin: 0 auto;
 }
-.toolbar-background-md {
-    border-color: rgb(95, 87, 87);
-    background: #171520;
+
+.back-button, .toolbar-title{
+	color: #ffffff !important;
 }
+
+.toolbar-background{
+	border-color: rgb(95, 87, 87);
+    background: #171520;
+    // color: #fff;
+}
+
+// .toolbar-background {
+    
+// }
