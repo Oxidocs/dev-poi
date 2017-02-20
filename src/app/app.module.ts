@@ -6,6 +6,7 @@ import { LoginPage } from '../pages/login/login';
 import { Usuario } from '../providers/usuario';
 import { MainPage } from '../pages/main/main';
 import { CircuitosPage } from '../pages/circuitos/circuitos';
+import { MapaPage } from '../pages/mapa/mapa';
 
 @NgModule({
 
@@ -13,7 +14,8 @@ import { CircuitosPage } from '../pages/circuitos/circuitos';
     MyApp,
     LoginPage,
     MainPage,
-    CircuitosPage
+    CircuitosPage,
+    MapaPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -23,7 +25,8 @@ import { CircuitosPage } from '../pages/circuitos/circuitos';
     MyApp,
     LoginPage,
     MainPage,
-    CircuitosPage
+    CircuitosPage,
+    MapaPage
   ],
   providers: [
     Usuario,

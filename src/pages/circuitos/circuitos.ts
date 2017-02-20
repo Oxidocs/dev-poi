@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { MapaPage } from '../mapa/mapa'
 
 /*
   Generated class for the Circuitos page.
@@ -21,6 +22,10 @@ export class CircuitosPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CircuitosPage');
+  }
+
+  toMapa(){
+  	this.navCtrl.push(MapaPage)
   }
 
 }
