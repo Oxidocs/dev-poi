@@ -31,16 +31,18 @@ export class MapaPage {
   	Geolocation.getCurrentPosition().then((resp) => {
 		this.lat = resp.coords.latitude;
 		this.long = resp.coords.longitude;
-		this.centerMap();
+    this.centerMap();
+
 	}).catch((error) => {
 	  console.log('Error getting location', error);
 	});
 
-	let watch = Geolocation.watchPosition();
+	let watch = Geolocation.watchPosition({ enableHighAccuracy: true });
 	watch.subscribe((data) => {
-	 // data can be a set of coordinates, or an error (if an error occurred).
-	 // data.coords.latitude
-	 // data.coords.longitude
+
+   this.lat = data.coords.latitude;
+   this.long = data.coords.longitude;
+   this.centerMap();
 	});
 	var projection = ol.proj.get('EPSG:3857');
 	var pos = ol.proj.transform([this.long, this.lat], 'EPSG:4326', 'EPSG:3857');
@@ -48,7 +50,7 @@ export class MapaPage {
         target: "map",
         layers: [
           new ol.layer.Tile({
-            source: new ol.source.OSM() 
+            source: new ol.source.OSM()
           })
         ],
         view: new ol.View({
@@ -62,7 +64,7 @@ export class MapaPage {
 	var pos = ol.proj.transform([this.long, this.lat], 'EPSG:4326', 'EPSG:3857');
 	this.map.getView().setCenter(pos);
 	//map.getView().setZoom(5);
- 
+
   }
 
   ionViewDidLeave() {
