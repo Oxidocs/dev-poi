@@ -7,12 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>mapa</ion-title>
+    <ion-title>Puntos de interés</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-fab left bottom>
+    <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab><ion-icon name="locate" (click)="ubicacionActual()"></ion-icon></button>
+      <button ion-fab><ion-icon name="add"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 	<div id="map" #map class="map"></div>
 </ion-content>
