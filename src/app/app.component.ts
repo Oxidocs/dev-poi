@@ -17,16 +17,21 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
   user: any;
   userReady: boolean = false;
+  FB_APP_ID: number = 1224370287616350;
 
   constructor(public platform: Platform, public events: Events) {
     this.initializeApp();
     events.subscribe('user:login', () => {
       this.doFbLogin();
     });
+    events.subscribe('user:check', () => {
+      this.checkLogin();
+    });
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Rutas', component: MainPage }
     ];
+    Facebook.browserInit(this.FB_APP_ID, "v2.8");
 
   }
 
@@ -62,6 +67,7 @@ export class MyApp {
       Splashscreen.hide();
     });
   }
+  // funcion para cerrar sesion de facebook
   doFbLogout(){
     let env = this;
     Facebook.logout()
@@ -78,20 +84,21 @@ export class MyApp {
     });
 
   }
+  // funcion para iniciar sesion de facebook
   doFbLogin(){
     let permissions = new Array();
-    let nav = this;
+    let env = this;
     //the permissions your facebook app needs from the user
-    permissions = ["public_profile"];
-
+    permissions = ["public_profile","email"];
 
     Facebook.login(permissions)
     .then(function(response){
       let userId = response.authResponse.userID;
-      let params = new Array();
 
+      if (response.status === 'connected') {
+      // Logged into your app and Facebook.
       //Getting name and gender properties
-      Facebook.api("/me?fields=name,gender", params)
+      Facebook.api("/me?fields=name,gender", permissions)
       .then(function(user) {
         user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
         //now we have the users info, let's save it in the NativeStorage
@@ -102,20 +109,43 @@ export class MyApp {
           picture: user.picture
         })
         .then(function(){
-          nav.user = {
+          env.user = {
             name: user.name,
             gender: user.gender,
             picture: user.picture
           };
-          nav.userReady = true;
-          nav.nav.setRoot(MainPage);
+          env.userReady = true;
+          env.nav.setRoot(MainPage);
         }, function (error) {
           console.log(error);
         })
-      })
+      });
+      } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      alert("The person is logged into Facebook, but not your app.");
+      } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      alert("The person is not logged into Facebook");
+      }
+
     }, function(error){
-      console.log(error);
+      alert("error de facebook");
     });
+  }
+  // funcion para checkear el estado de la sesion de Facebook
+  checkLogin(){
+
+    Facebook.getLoginStatus()
+    .then(function(response) {
+
+      alert(JSON.stringify(response.status));
+
+    }, function(error){
+
+      alert("error al checkear la sesión de facebook");
+    });
+
   }
 
 }

@@ -1,5 +1,7 @@
 keytool -genkey -v -keystore poi.keystore -alias poi -keyalg RSA -keysize 2048 -validity 10000
 
+cordova plugin rm cordova-plugin-console
+
 cordova build --release android --prod
 
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore poi.keystore platforms/android/build/outputs/apk/android-release-unsigned.apk poi

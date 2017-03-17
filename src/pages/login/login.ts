@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Facebook } from 'ionic-native';
 import { NavController, NavParams, MenuController, Events} from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -18,7 +17,7 @@ import { MainPage } from '../main/main';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  FB_APP_ID: number = 1224370287616350;
+
   private user2 = "admin";
   private pass = "admin123";
   user: string;
@@ -30,7 +29,7 @@ export class LoginPage {
       'user': ['', Validators.compose([Validators.required])],
       'password': ['', Validators.compose([Validators.required])]
     })
-    Facebook.browserInit(this.FB_APP_ID, "v2.8");
+
   }
 
   ionViewDidLoad() {
@@ -66,6 +65,9 @@ export class LoginPage {
 
   logIn() {
   this.events.publish('user:login');
+  }
+  checkLogIn() {
+  this.events.publish('user:check');
   }
 
 }

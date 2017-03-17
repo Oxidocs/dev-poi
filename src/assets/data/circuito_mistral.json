@@ -1,0 +1,44 @@
+{"type":"FeatureCollection",
+	"features":[
+		{"type":"Feature","geometry":{"type":"Point","coordinates":[-71.0263657,-30.014217]},"properties":
+			{
+				"tipo": "Sitios de interes",
+				"pais": "Chile",
+				"nombre": "Observatorio Cerro Mayu",
+				"comentario": " ",
+				"popup": "<p>\n<font size=\"+2\">Titulo</font>\n<hr><br />\ndirección por confirmar<br />\n\n</p>\n",
+				"icono": "DIRECCION_ICONO"
+			}
+    },
+		{"type":"Feature","geometry":{"type":"Point","coordinates":[-70.7284111,-30.0268]},"properties":
+      {
+        "tipo": "Sitios de interes",
+        "pais": "Chile",
+        "nombre": "Centro Astronomico Alfa Aldea",
+        "comentario": " ",
+        "popup": "<p>\n<font size=\"+2\">Titulo</font>\n<hr><br />\ndirección por confirmar<br />\n\n</p>\n",
+        "icono": "DIRECCION_ICONO"
+      }
+    },
+		{"type":"Feature","geometry":{"type":"Point","coordinates":[-70.7157413,-30.033902]},"properties":
+      {
+        "tipo": "Sitios de interes",
+        "pais": "Chile",
+        "nombre": "CAstronómica del Sur Ltda. - Observatorio del Pangue",
+        "comentario": " ",
+        "popup": "<p>\n<font size=\"+2\">Titulo</font>\n<hr><br />\ndirección por confirmar<br />\n\n</p>\n",
+        "icono": "DIRECCION_ICONO"
+      }
+    },
+		{"type":"Feature","geometry":{"type":"Point","coordinates":[-70.6877581,-29.9898017]},"properties":
+      {
+        "tipo": "Sitios de interes",
+        "pais": "Chile",
+        "nombre": "Observatorio Mamalluca",
+        "comentario": " ",
+        "popup": "<p>\n<font size=\"+2\">Titulo</font>\n<hr><br />\ndirección por confirmar<br />\n\n</p>\n",
+        "icono": "DIRECCION_ICONO"
+      }
+    }
+	]
+}
