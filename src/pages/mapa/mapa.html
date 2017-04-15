@@ -17,9 +17,10 @@
   <ion-fab left bottom>
     <button ion-fab mini><ion-icon name="add"></ion-icon></button>
     <ion-fab-list side="top">
-      <button ion-fab><ion-icon name="locate" (click)="ubicacionActual()" ></ion-icon></button>
+      <button ion-fab><ion-icon name="locate" (click)="openModal()" ></ion-icon></button>
       <button ion-fab><ion-icon name="add"(click)="zoomMap()" ></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 	<div id="map" #map class="map"></div>
+  <div id="popup"></div>
 </ion-content>

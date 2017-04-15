@@ -54,6 +54,13 @@ export class LoginPage {
 
     });
   }
+  omitirLogin(form){
+    this.user = "test";
+    this.password = "test";
+    setTimeout(() => {
+         this.navCtrl.setRoot(MainPage);
+       }, 300);
+  }
   doAlert() {
     let alert = this.alerCtrl.create({
       title: 'Credencial incorrecta',

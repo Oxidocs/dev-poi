@@ -1,7 +1,8 @@
 import { Geolocation } from 'ionic-native'
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, MenuController } from 'ionic-angular';
+import { ModalController, NavController, NavParams, MenuController, Events} from 'ionic-angular';
 import ol from 'openlayers';
+import { ModalMapaPage } from '../modal-mapa/modal-mapa';
 
 /*
   Generated class for the Mapa page.
@@ -22,23 +23,32 @@ export class MapaPage {
 	iconVectorLayer: any;
 	iconFeature: any;
 	vectorLayer: any;
+  pos: any;
 
 	@ViewChild('map') map;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menuPrincipal:MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menuPrincipal:MenuController, public events: Events, public modalCtrl:ModalController) {
 
   }
+  openModal(props) {
+    console.log(props);
+    let modal = this.modalCtrl.create(ModalMapaPage, { tipo: props.tipo, pais: props.pais, nombre: props.nombre, comentario: props.comentario, popup: props.popup, icono: props.icono, portadas: props.portadas });
+    modal.present();
+  }
+ 
   ionViewWillEnter(){
     this.menuPrincipal.enable(false);
-    Geolocation.getCurrentPosition().then((resp) => {
+   
+    Geolocation.getCurrentPosition({ maximumAge:3000, enableHighAccuracy: true }).then((resp) => {
       this.lat = resp.coords.latitude;
       this.long = resp.coords.longitude;
       this.centerMap();
-      this.marcadores(this.map);
+      this.drawCircleInMeter(this.map,resp.coords.accuracy,this.long,this.lat);
+      
     }).catch((error) => {
       console.log('Error getting location', error);
     });
-    let watch = Geolocation.watchPosition({ enableHighAccuracy: true });
+    let watch = Geolocation.watchPosition({ maximumAge:3000, enableHighAccuracy: true });
     watch.subscribe((data) => {
       this.lat = data.coords.latitude;
       this.long = data.coords.longitude;
@@ -47,14 +57,78 @@ export class MapaPage {
       this.drawCircleInMeter(this.map,data.coords.accuracy,this.long,this.lat);
     });
     console.log("entre");
+
+    this.map.on('click',(evt=>{
+      console.log(evt);
+      var feature = evt.map.forEachFeatureAtPixel(evt.pixel,
+      function(feature) {
+        return feature;
+      });
+      if (feature) {
+        var props = feature.getProperties();
+        console.log(props.features[0].I.nombre);
+
+        this.openModal(props.features[0].I);
+      }
+    }))
+    this.marcadores(this.map);
+
+    // this.map.on('click', function(evt) {
+    //   console.log(evt);
+    //   var feature = evt.map.forEachFeatureAtPixel(evt.pixel,
+    //   function(feature) {
+    //     return feature;
+    //   });
+    //   if (feature) {
+    //     var props = feature.getProperties();
+    //     console.log(props.features[0].I.nombre);
+    //     this.events.publish('mapa:modal');
+    //     // popup.setPosition(coordinates);
+    //     // $(element).popover({
+    //     // 'placement': 'top',
+    //     // 'html': true,
+    //     // 'content': feature.get('name')
+    //     // });
+    //     // $(element).popover('show');
+    //     // } else {
+    //     // $(element).popover('destroy');
+    //   }
+    //   console.log('click');
+    // });
+// this.map.on("click", (e)=> {
+//   e.map.forEachFeatureAtPixel(e.pixel, function (feature) {
+//     let id: any=feature.getProperties().features[0].I.nombre;
+//     console.log(id);
+//   })
+// });
+
+this.map.on('pointermove', function(e) {
+  if (e.dragging) {
+  console.log('moviendo mapa')
+  return;
+}
+});
+
+// change mouse cursor when over marker
+// this.map.on('pointermove', function(e) {
+//   if (e.dragging) {
+//   console.log("moviendo cursor");
+//   return;
+//   }
+//   var pixel = this.map.getEventPixel(e.originalEvent);
+//   var hit = this.map.hasFeatureAtPixel(pixel);
+//   this.map.getTarget().style.cursor = hit ? 'pointer' : '';
+// });
   }
   ionViewDidLoad() {
     this.menuPrincipal.enable(false);
-    Geolocation.getCurrentPosition().then((resp) => {
+    
+    Geolocation.getCurrentPosition({ maximumAge:3000, enableHighAccuracy: true }).then((resp) => {
       this.lat = resp.coords.latitude;
       this.long = resp.coords.longitude;
       this.centerMap();
-      this.marcadores(this.map);
+      this.drawCircleInMeter(this.map,resp.coords.accuracy,this.long,this.lat);
+   
     }).catch((error) => {
       console.log('Error getting location', error);
     });
@@ -66,20 +140,20 @@ export class MapaPage {
       //this.map.removeLayer(this.iconVectorLayer); //setea el icono de geolocate
       this.drawCircleInMeter(this.map,data.coords.accuracy,this.long,this.lat);
     });
-    var projection = ol.proj.get('EPSG:3857');
-    var pos = ol.proj.transform([this.long, this.lat], 'EPSG:4326', 'EPSG:3857');
+    var osm_layer: any = new ol.layer.Tile({
+      preload: Infinity,
+      source: new ol.source.OSM()
+    });
+    this.pos = ol.proj.transform([this.long, this.lat], 'EPSG:4326', 'EPSG:3857');
     this.map = new ol.Map({
       target: "map",
-      layers: [
-        new ol.layer.Tile({
-        source: new ol.source.OSM()
-        })
-      ],
+      layers:  [osm_layer],
       view: new ol.View({
-        center: pos,
+        center: this.pos,
         zoom: 8
       })
     });
+    this.marcadores(this.map);
   }
 
   centerMap(){
@@ -168,7 +242,7 @@ export class MapaPage {
           anchor: [0.5, 50],
           anchorXUnits: 'fraction',
           anchorYUnits: 'pixels',
-          src: 'assets/icon/pin_small.png'
+          src: 'assets/icon/pin2.png'
         })),
         text: new ol.style.Text({
           text: size.toString(),

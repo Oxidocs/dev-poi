@@ -1,9 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, Events } from 'ionic-angular';
+import { Nav, Platform, Events, ModalController } from 'ionic-angular';
 import { StatusBar, Splashscreen, NativeStorage, Facebook } from 'ionic-native';
 
 import { LoginPage } from '../pages/login/login';
 import { MainPage } from '../pages/main/main';
+import { DashPage } from '../pages/dash/dash';
+import { IntroPage } from '../pages/intro/intro';
+
 
 
 @Component({
@@ -29,7 +32,8 @@ export class MyApp {
     });
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Rutas', component: MainPage }
+      { title: 'Rutas', component: MainPage },
+      { title: 'Menu', component: DashPage }
     ];
     Facebook.browserInit(this.FB_APP_ID, "v2.8");
 

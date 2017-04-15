@@ -7,6 +7,11 @@ import { Usuario } from '../providers/usuario';
 import { MainPage } from '../pages/main/main';
 import { CircuitosPage } from '../pages/circuitos/circuitos';
 import { MapaPage } from '../pages/mapa/mapa';
+import { DashPage } from '../pages/dash/dash';
+import { ModalMapaPage } from '../pages/modal-mapa/modal-mapa';
+import { IntroPage } from '../pages/intro/intro';
+
+
 
 @NgModule({
 
@@ -15,7 +20,10 @@ import { MapaPage } from '../pages/mapa/mapa';
     LoginPage,
     MainPage,
     CircuitosPage,
-    MapaPage
+    MapaPage,
+    DashPage,
+    ModalMapaPage,
+    IntroPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -26,7 +34,10 @@ import { MapaPage } from '../pages/mapa/mapa';
     LoginPage,
     MainPage,
     CircuitosPage,
-    MapaPage
+    MapaPage,
+    DashPage,
+    ModalMapaPage,
+    IntroPage
   ],
   providers: [
     Usuario,
