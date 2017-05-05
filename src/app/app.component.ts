@@ -1,155 +1,189 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, Events, ModalController } from 'ionic-angular';
-import { StatusBar, Splashscreen, NativeStorage, Facebook } from 'ionic-native';
+import { StatusBar, Splashscreen, NativeStorage, Facebook, FacebookLoginResponse } from 'ionic-native';
 
 import { LoginPage } from '../pages/login/login';
 import { MainPage } from '../pages/main/main';
 import { DashPage } from '../pages/dash/dash';
 import { IntroPage } from '../pages/intro/intro';
 
+import { UserStorage } from '../providers/userstorage';
+import { Api } from '../providers/api';
 
 
 @Component({
-  templateUrl: 'app.html'
+	templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
+	@ViewChild(Nav) nav: Nav;
 
-  rootPage: any;
+	rootPage: any;
+	pages: Array<{title: string, component: any}>;
+	user: any;
+	userReady: boolean = false;
+	FB_APP_ID: number = 1224370287616350;
+	// token_global: string = "a5440e8167f0212acbcfcdac0d7965339b84568e";
+	token_global: string = "a322992a84de6143817daf10f5897f5c6ded5d43";
+	token: string;
 
-  pages: Array<{title: string, component: any}>;
-  user: any;
-  userReady: boolean = false;
-  FB_APP_ID: number = 1224370287616350;
+	imagen:string;
+	nombre_usuario: string;
 
-  constructor(public platform: Platform, public events: Events) {
-    this.initializeApp();
-    events.subscribe('user:login', () => {
-      this.doFbLogin();
-    });
-    events.subscribe('user:check', () => {
-      this.checkLogin();
-    });
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Rutas', component: MainPage },
-      { title: 'Menu', component: DashPage }
-    ];
-    Facebook.browserInit(this.FB_APP_ID, "v2.8");
+	constructor(public platform: Platform, public events: Events, private user_storage: UserStorage, private api: Api) {
+		this.initializeApp();
+		events.subscribe('user:login', () => {
+			this.doFbLogin();
+		});
+		events.subscribe('user:check', () => {
+			this.checkLogin();
+		});
 
-  }
+		this.pages = [
+			{ title: 'Rutas', component: MainPage },
+			{ title: 'Menu', component: DashPage },
+			{ title: 'Intro', component: IntroPage }
+		];
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.validaSesion();
-      StatusBar.styleDefault();
-    });
-  }
+		Facebook.browserInit(this.FB_APP_ID, "v2.8");
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
-  }
-  validaSesion(){
-    let env = this;
-    NativeStorage.getItem('user')
-    .then( function (data) {
-      // user is previously logged and we have his data
-      // we will let him access the app
-      env.user = {
-        name: data.name,
-        gender: data.gender,
-        picture: data.picture
-      };
-      env.userReady = true;
-      env.nav.setRoot(MainPage);
-      Splashscreen.hide();
-    }, function (error) {
-      //we don't have the user data so we will ask him to log in
-      env.nav.setRoot(LoginPage);
-      Splashscreen.hide();
-    });
-  }
-  // funcion para cerrar sesion de facebook
-  doFbLogout(){
-    let env = this;
-    Facebook.logout()
-    .then(function(response) {
-      //user logged out so we will remove him from the NativeStorage
-      NativeStorage.remove('user');
-      env.userReady = false;
-      env.nav.setRoot(LoginPage);
-      Splashscreen.hide();
-    }, function(error){
-      env.userReady = false;
-      env.nav.setRoot(LoginPage);
-      console.log(error);
-    });
+	}
 
-  }
-  // funcion para iniciar sesion de facebook
-  doFbLogin(){
-    let permissions = new Array();
-    let env = this;
-    //the permissions your facebook app needs from the user
-    permissions = ["public_profile","email"];
+	initializeApp() {
+		this.platform.ready().then(() => {
+			this.validaSesion();
+			StatusBar.styleDefault();
+		});
+	}
 
-    Facebook.login(permissions)
-    .then(function(response){
-      let userId = response.authResponse.userID;
+	openPage(page) {
+		this.nav.setRoot(page.component);
+	}
 
-      if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      //Getting name and gender properties
-      Facebook.api("/me?fields=name,gender", permissions)
-      .then(function(user) {
-        user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
-        //now we have the users info, let's save it in the NativeStorage
-        NativeStorage.setItem('user',
-        {
-          name: user.name,
-          gender: user.gender,
-          picture: user.picture
-        })
-        .then(function(){
-          env.user = {
-            name: user.name,
-            gender: user.gender,
-            picture: user.picture
-          };
-          env.userReady = true;
-          env.nav.setRoot(MainPage);
-        }, function (error) {
-          console.log(error);
-        })
-      });
-      } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      alert("The person is logged into Facebook, but not your app.");
-      } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-      alert("The person is not logged into Facebook");
-      }
+	validaSesion(){
+		this.user_storage.getToken().then((token)=>{
 
-    }, function(error){
-      alert("error de facebook");
-    });
-  }
-  // funcion para checkear el estado de la sesion de Facebook
-  checkLogin(){
+			this.token = token;
 
-    Facebook.getLoginStatus()
-    .then(function(response) {
+			if (token!="" && token!=null ) {
 
-      alert(JSON.stringify(response.status));
+				this.userReady = true;
+				this.user_storage.getFirstName().then((nombre)=>{
+					this.user_storage.getLastName().then((apellido)=>{
+						var nombre_completo = nombre+' '+apellido;
+						this.user_storage.getImage().then((imagen)=>{
+							this.setVariablesMenu(imagen , nombre_completo);
+						});
+					});
+				});
 
-    }, function(error){
+				this.nav.setRoot(MainPage);
+			}else{
+				this.nav.setRoot(IntroPage);
+			}
+			Splashscreen.hide();
+		});
+	}
 
-      alert("error al checkear la sesión de facebook");
-    });
+	logOut(){
+		Facebook.logout()
+		.then((response)=> {
+			//user logged out so we will remove him from the NativeStorage
+			this.user_storage.logout();
+			this.userReady = false;
+			this.nav.setRoot(IntroPage);
+			Splashscreen.hide();
+		}, (error)=>{
+			this.userReady = false;
+			this.nav.setRoot(IntroPage);
+			console.log(error);
+		});
+	}
+	
+	// funcion para iniciar sesion de facebook
+	doFbLogin(){
+		let permissions = new Array();
+		let env = this;
+		//the permissions your facebook app needs from the user
+		permissions = ["public_profile","email"];
 
-  }
+		Facebook.login(permissions)
+		.then((response)=>{
+			let userId = response.authResponse.userID;
+
+			if (response.status === 'connected') {
+
+				// Logged into your app and Facebook.
+				// Getting name and gender properties
+				Facebook.api("/me?fields=name,gender,first_name,last_name,email,age_range,link,locale,timezone,updated_time,verified", permissions)
+				.then((user)=> {
+					
+					user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
+
+					this.api.login(user.email,'password').subscribe((data)=>{
+
+						this.user_storage.setToken(data['token']);
+						this.user_storage.setUsername(user.email);
+						this.user_storage.setEmail(user.email);
+						this.user_storage.setFirstName(user.first_name);
+						this.user_storage.setLastName(user.last_name);
+						this.user_storage.setImage(user.picture);
+						env.userReady = true;
+						env.nav.setRoot(MainPage);
+
+					},(error)=>{
+						if (error.status==400) {
+							// alert(error._body);
+
+							this.api.registrarUsuario(this.token_global, user.email, user.email, 'password', user.first_name, user.last_name).subscribe((data)=>{
+
+								this.user_storage.setToken(data['token']);
+								this.user_storage.setUsername(user.email);
+								this.user_storage.setEmail(user.email);
+								this.user_storage.setFirstName(user.first_name);
+								this.user_storage.setLastName(user.last_name);
+								this.user_storage.setImage(user.picture);
+
+								this.setVariablesMenu(user.picture ,user.first_name+' '+user.last_name)
+
+								env.userReady = true;
+								env.nav.setRoot(MainPage);
+
+							}, (error)=> {
+								console.log(error);
+							});
+						}
+					});
+				});
+
+			} else if (response.status === 'not_authorized') {
+				alert("The person is logged into Facebook, but not your app.");
+			} else {
+				alert("The person is not logged into Facebook");
+			}
+
+		}, (error)=>{
+			alert("error de facebook");
+		});
+	}
+
+	setVariablesMenu(imagen, nombre_usuario){
+		this.imagen = imagen;
+		this.nombre_usuario = nombre_usuario;
+	}
+
+	// funcion para checkear el estado de la sesion de Facebook
+	checkLogin(){
+
+		Facebook.getLoginStatus()
+		.then((response)=> {
+
+			alert(JSON.stringify(response.status));
+
+		}, (error)=>{
+
+			alert("error al checkear la sesión de facebook");
+		});
+
+	}
 
 }

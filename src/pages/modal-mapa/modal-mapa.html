@@ -5,23 +5,33 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  
+  <ion-toolbar>
+    <ion-title>
+      {{datos.nombre}}
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="light" showWhen="ios">Cerrar</span>
+        <span ion-text color="light" showWhen="android,windows">Cerrar</span>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 
 <ion-content class="slider-page">
   <ion-slides pager class="altura-slide">
     <ion-slide *ngFor="let slide of datos['portadas']">
-      <img [src]="slide.src" class="slide-image"/>      
+      <img src="http://192.168.100.9:8000/media/{{slide.src}}" class="slide-image"/>      
     </ion-slide>
-    <ion-slide>
+    <!-- <ion-slide>
       <img src="assets/img/astronomico.jpg" class="slide-image"/>
       <h2 class="slide-title">Ready to Play?</h2>
       <button ion-button large clear icon-right color="primary">
         Continue
         <ion-icon name="arrow-forward"></ion-icon>
       </button>
-    </ion-slide>
+    </ion-slide> -->
   </ion-slides>
   <h2 class="slide-title" text-center>{{datos.nombre}}</h2>
   <p>{{datos.comentario}}</p>

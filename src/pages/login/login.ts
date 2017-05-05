@@ -18,26 +18,22 @@ import { MainPage } from '../main/main';
 })
 export class LoginPage {
 
-  private user2 = "admin";
-  private pass = "admin123";
   user: string;
   password: string;
   form: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menuPrincipal:MenuController, private usuario:Usuario, private builder: FormBuilder, public alerCtrl: AlertController, public events: Events) {
     this.form = builder.group({
-      'user': ['', Validators.compose([Validators.required])],
-      'password': ['', Validators.compose([Validators.required])]
+      'user': ['admin', Validators.compose([Validators.required])],
+      'password': ['admin123', Validators.compose([Validators.required])]
     })
 
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
     this.menuPrincipal.enable(false);
   }
   ionViewDidLeave() {
-    // enable the root left menu when leaving the tutorial page
     this.menuPrincipal.enable(true);
   }
   login(form){

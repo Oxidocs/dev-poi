@@ -223,7 +223,8 @@ this.map.on('pointermove', function(e) {
 
   marcadores(map){
     var source = new ol.source.Vector({
-      url: 'assets/data/circuito_mistral.json',
+      url: 'http://192.168.100.9:8000/api/lugares_completo/?id_circuitos=1',
+      // url: 'assets/data/circuito_mistral.json',
       format: new ol.format.GeoJSON()
     });
     var clusterSource = new ol.source.Cluster({

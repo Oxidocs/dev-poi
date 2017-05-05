@@ -12,58 +12,20 @@
     <ion-title text-center>RUTAS TURÍSTICAS</ion-title>
     <ion-buttons end>
       <button ion-button class="btn-avatar">
-        <img width="40" height="40" src="assets/img/avatar.png">
+        <img *ngIf="bool_image_facebook" width="40" height="40" src="{{image_facebook}}" alt="imagen de perfil">
+        <img *ngIf="!bool_image_facebook" width="40" height="40" src="assets/img/avatar.png" alt="imagen de perfil">
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content class="card-background-page home">
   <ion-grid class="">
-    <ion-row>
-      <ion-col>
-        <ion-card (click)="toCircuitos('Astronómico')">
-         <div class="div-gradiente"></div>
-          <img class="card-background-page-image" src="assets/img/astronomia.jpeg"/>
-          <div class="card-title" text-center>Astronomía</div>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-      <ion-card (click)="toCircuitos('Playas')">
-         <div class="div-gradiente"></div>
-          <img class="card-background-page-image" src="assets/img/playa2.jpeg"/>
-          <div class="card-title" text-center>Playas</div>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-card (click)="toCircuitos('Gastronómico')">
-         <div class="div-gradiente"></div>
-          <img class="card-background-page-image" src="assets/img/comida.jpeg"/>
-          <div class="card-title" text-center>Gastronomía</div>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card (click)="toCircuitos('MisPois')">
-         <div class="div-gradiente"></div>
-          <img class="card-background-page-image" src="assets/img/mipoi.jpeg"/>
-          <div class="card-title" text-center>Mis Poi</div>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-card (click)="toCircuitos('Servicios')">
-         <div class="div-gradiente"></div>
-          <img class="card-background-page-image" src="assets/img/servicios.png"/>
-          <div class="card-title" text-center>Servicios</div>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card (click)="toCircuitos('Vida nocturna')">
-         <div class="div-gradiente"></div>
-          <img class="card-background-page-image" src="assets/img/vida-nocturna.jpeg"/>
-          <div class="card-title" text-center>Vida Nocturna</div>
+    <ion-row *ngFor="let row of grid" >
+      <ion-col width-50 *ngFor="let ruta of row" >
+        <ion-card (click)="toCircuitos(ruta.nombre, ruta.id)">
+          <div class="div-gradiente"></div>
+          <img class="card-background-page-image" src="{{ruta.imagen}}"/>
+          <div class="card-title" text-center>{{ruta.nombre}}</div>
         </ion-card>
       </ion-col>
     </ion-row>

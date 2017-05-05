@@ -3,9 +3,9 @@
     <ion-toolbar>
     <ion-item>
       <ion-avatar item-center>
-      <img [src]="user.picture">
+      <img [src]="imagen">
       </ion-avatar>
-      <p text-center> {{user.name}}</p>
+      <p text-center> {{nombre_usuario}}</p>
     </ion-item>
     </ion-toolbar>
   </ion-header>
@@ -15,7 +15,7 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
-      <button ion-button block menuToggle (click)="doFbLogout()">salir</button>
+      <button ion-button block menuToggle (click)="logOut()">salir</button>
       <button ion-button block menuToggle (click)="checkLogin()">check</button>
 
     </ion-list>
