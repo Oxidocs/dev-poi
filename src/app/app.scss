@@ -14,7 +14,55 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-.ios .menu-inner, .md .menu-inner {
+
+@import "../../node_modules/openlayers/css/ol";
+
+@font-face {
+  font-family: 'Roboto-Light';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Light'), local('Roboto-Light'), url(/android_assets/www/assets/fonts/roboto/Roboto-Light.ttf) format('ttf');
+  
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+@font-face {
+  font-family: 'Roboto-Medium';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(/android_assets/www/assets/fonts/roboto/Roboto-Medium.ttf) format('ttf');
+  
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+@font-face {
+  font-family: 'Roboto-LightItalic';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto LightItalic'), local('Roboto-LightItalic'), url(/android_assets/www/assets/fonts/roboto/Roboto-LightItalic.ttf) format('ttf');
+  
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(/android_assets/www/assets/fonts/roboto/Roboto-Regular.ttf) format('ttf');
+  
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+@font-face {
+  font-family: 'Roboto-Bold';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(/android_assets/www/assets/fonts/roboto/Roboto-Bold.ttf) format('ttf');
+  
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+.ios .menu-inner, .md .menu-inner, .wp .menu-inner {
     background: rgba(255, 255, 255, 0);
 }
 .item-md ion-avatar img {
@@ -24,7 +72,12 @@
     overflow: hidden;
     margin: 0 auto;
 }
-.toolbar-background-md {
-    border-color: rgb(95, 87, 87);
+
+.back-button, .toolbar-title{
+	color: #ffffff !important;
+}
+
+.toolbar-background{
+	border-color: rgb(95, 87, 87);
     background: #171520;
 }

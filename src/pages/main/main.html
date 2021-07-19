@@ -5,47 +5,30 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color="dark2">
+  <ion-navbar color="color-poi">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>RUTAS</ion-title>
+    <ion-title text-center>RUTAS TURÍSTICAS</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon name="more"></ion-icon>
+      <button ion-button class="btn-avatar">
+        <img *ngIf="bool_image_facebook" width="40" height="40" src="{{image_facebook}}" alt="imagen de perfil">
+        <img *ngIf="!bool_image_facebook" width="40" height="40" src="assets/img/avatar.png" alt="imagen de perfil">
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content class="card-background-page">
-  <ion-card>
-    <img class="card-background-page-image" src="assets/img/astro@1x.png"/>
-    <div class="card-title">Astronomia</div>
-
-  </ion-card>
-
-  <ion-card>
-    <img class="card-background-page-image" src="assets/img/gastro@1x.png"/>
-    <div class="card-title">Gastronomia</div>
-
-  </ion-card>
-
-  <ion-card>
-    <img class="card-background-page-image" src="assets/img/night@1x.png"/>
-    <div class="card-title">NightLife</div>
-
-  </ion-card>
-
-  <ion-card>
-    <img class="card-background-page-image" src="assets/img/playa@1x.png"/>
-    <div class="card-title">Playas</div>
-
-  </ion-card>
-
-  <ion-card>
-    <img class="card-background-page-image" src="assets/img/astro@1x.png"/>
-    <div class="card-title">Playas</div>
-
-  </ion-card>
-
+<ion-content class="card-background-page home">
+  <ion-grid class="">
+    <ion-row *ngFor="let row of grid" >
+      <ion-col width-50 *ngFor="let ruta of row" >
+        <ion-card (click)="toCircuitos(ruta.nombre, ruta.id)">
+          <div class="div-gradiente"></div>
+          <img class="card-background-page-image" src="{{ruta.imagen}}"/>
+          <div class="card-title" text-center>{{ruta.nombre}}</div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Facebook, NativeStorage } from 'ionic-native';
 import { NavController, NavParams, MenuController, Events} from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -18,27 +17,23 @@ import { MainPage } from '../main/main';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  FB_APP_ID: number = 1224370287616350;
-  private user2 = "admin";
-  private pass = "admin123";
+
   user: string;
   password: string;
   form: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menuPrincipal:MenuController, private usuario:Usuario, private builder: FormBuilder, public alerCtrl: AlertController, public events: Events) {
     this.form = builder.group({
-      'user': ['', Validators.compose([Validators.required])],
-      'password': ['', Validators.compose([Validators.required])]
+      'user': ['admin', Validators.compose([Validators.required])],
+      'password': ['admin123', Validators.compose([Validators.required])]
     })
-    Facebook.browserInit(this.FB_APP_ID, "v2.8");
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
     this.menuPrincipal.enable(false);
   }
   ionViewDidLeave() {
-    // enable the root left menu when leaving the tutorial page
     this.menuPrincipal.enable(true);
   }
   login(form){
@@ -55,6 +50,13 @@ export class LoginPage {
 
     });
   }
+  omitirLogin(form){
+    this.user = "test";
+    this.password = "test";
+    setTimeout(() => {
+         this.navCtrl.setRoot(MainPage);
+       }, 300);
+  }
   doAlert() {
     let alert = this.alerCtrl.create({
       title: 'Credencial incorrecta',
@@ -66,6 +68,9 @@ export class LoginPage {
 
   logIn() {
   this.events.publish('user:login');
+  }
+  checkLogIn() {
+  this.events.publish('user:check');
   }
 
 }

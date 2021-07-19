@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="dark2">
+    <ion-title>{{ titulo }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg">
+
+<ion-card *ngFor="let circuito of circuitos" class="adv-map">
+  <div style="position: relative">
+    <img src="{{circuito.imagen}}">
+     <ion-fab left top>
+      <button ion-fab class="fab-map">
+        <ion-icon name='volume-up'></ion-icon>
+      </button>
+    </ion-fab>
+    <ion-fab right top>
+      <button ion-fab class="fab-map" color="danger" (click)="toMapa()">
+        <ion-icon name='pin'></ion-icon>
+      </button>
+    </ion-fab>
+  </div>
+  <ion-item>
+    <ion-icon color="dark2" large item-left name='map'></ion-icon>
+    <h2>{{circuito.nombre}}</h2>
+    <p>{{circuito.descripcion}}</p>
+  </ion-item>
+  <ion-item actions>
+    <span ion-text item-left color="dark2" class="item-bold">18 min</span>
+    <span ion-text item-left color="dark2">(2.6 km)</span>
+    <button ion-button color="primary" clear item-right icon-left>
+      <ion-icon name='navigate'></ion-icon>
+      Iniciar
+    </button>
+  </ion-item>
+
+</ion-card>
+
+
+</ion-content>

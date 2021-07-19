@@ -3,19 +3,33 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
-import { Page1 } from '../pages/page1/page1';
-import { Page2 } from '../pages/page2/page2';
-import { Usuario } from '../providers/usuario';
 import { MainPage } from '../pages/main/main';
+import { CircuitosPage } from '../pages/circuitos/circuitos';
+import { MapaPage } from '../pages/mapa/mapa';
+import { DashPage } from '../pages/dash/dash';
+import { ModalMapaPage } from '../pages/modal-mapa/modal-mapa';
+import { IntroPage } from '../pages/intro/intro';
+import { RegistroPage } from '../pages/registro/registro';
+
+
+import { Usuario } from '../providers/usuario';
+import { Api } from '../providers/api';
+import { UserStorage } from '../providers/userstorage';
+import { DataLocal } from '../providers/data-local';
+
 
 @NgModule({
 
   declarations: [
     MyApp,
-    Page1,
-    Page2,
     LoginPage,
-    MainPage
+    MainPage,
+    CircuitosPage,
+    MapaPage,
+    DashPage,
+    ModalMapaPage,
+    IntroPage,
+    RegistroPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -23,13 +37,20 @@ import { MainPage } from '../pages/main/main';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    Page1,
-    Page2,
     LoginPage,
-    MainPage
+    MainPage,
+    CircuitosPage,
+    MapaPage,
+    DashPage,
+    ModalMapaPage,
+    IntroPage,
+    RegistroPage
   ],
   providers: [
+    DataLocal,
     Usuario,
+    UserStorage,
+    Api,
     Storage,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

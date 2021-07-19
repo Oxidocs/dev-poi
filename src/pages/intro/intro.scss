@@ -1,0 +1,33 @@
+page-intro {
+	
+	.bg-img{
+		background-image: url('../assets/img/bg-intro.png');
+		background-repeat: no-repeat; 
+		background-size:cover;
+	}
+	.titulo{
+		font: 600 12px/1 "Roboto Medium", Helvetica, sans-serif;
+		font-size: 2rem;
+		color: $rojo-poi;
+	}
+	.contenido{
+		font: normal 1.6rem/1 "Roboto Regular", Helvetica, sans-serif;
+		color: $negro-suave;
+	}
+	.mail{
+		font-size: 4rem;
+		color: $negro-suave;
+	}
+	.logo-facebook{
+		font-size: 4rem;
+    	color: #3b5998;
+	}
+	.label-inferior{
+		font: 600 12px/1 "Roboto Medium", Helvetica, sans-serif;
+		font-size: 1.5rem;
+		color: $gris;
+	}
+	.registro{
+		color: $rojo-poi;
+	}
+}

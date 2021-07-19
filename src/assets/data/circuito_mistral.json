@@ -1,0 +1,64 @@
+{"type":"FeatureCollection",
+	"features":[
+		{"type":"Feature","geometry":{"type":"Point","coordinates":[-71.0263657,-30.014217]},"properties":
+			{
+				"tipo": "Sitios de interes",
+				"pais": "Chile",
+				"nombre": "Observatorio Cerro Mayu",
+				"comentario": "El observatorio turístico Cerro Mayu es un observatorio turístico sin fines de lucro que pertenece al Colegio Seminario Conciliar de La Serena. Se puede visitar entre Lunes y Sábado, comenzando el tour a las 20:30 hrs. y terminando a las 22:30.",
+				"popup": "<p>\n<font size=\"+2\">Titulo</font>\n<hr><br />\ndirección por confirmar<br />\n\n</p>\n",
+				"icono": "DIRECCION_ICONO",
+        "portadas": [
+          { "src": "assets/img/observatorio-cerro-mayu.jpg", "comentario":"Imagen de astronomia 1"},
+          { "src": "assets/img/astronomico.jpg", "comentario":"Imagen de astronomia 2"},
+          { "src": "assets/img/astronomico.jpg", "comentario":"Imagen de astronomia 3" }
+        ]
+			}
+    },
+		{"type":"Feature","geometry":{"type":"Point","coordinates":[-70.7284111,-30.0268]},"properties":
+      {
+        "tipo": "Sitios de interes",
+        "pais": "Chile",
+        "nombre": "Centro Astronomico Alfa Aldea",
+        "comentario": "Entre parrones vineros se encuentra nuestro anfiteatro y dependencias de Alfa Aldea, donde se funda la naturaleza del paisaje, teniendo como escenario nuestras montañas y cielos privilegiados.  Todo lo mejor de nuestra familia al servicio de quienes nos vistan.",
+        "popup": "<p>\n<font size=\"+2\">Titulo</font>\n<hr><br />\ndirección por confirmar<br />\n\n</p>\n",
+        "icono": "DIRECCION_ICONO",
+        "portadas": [
+          { "src": "assets/img/astronomico.jpg", "comentario":"Imagen de astronomia 1"},
+          { "src": "assets/img/astronomico.jpg", "comentario":"Imagen de astronomia 2"},
+          { "src": "assets/img/astronomico.jpg", "comentario":"Imagen de astronomia 3" }
+        ]
+      }
+    },
+		{"type":"Feature","geometry":{"type":"Point","coordinates":[-70.7157413,-30.033902]},"properties":
+      {
+        "tipo": "Sitios de interes",
+        "pais": "Chile",
+        "nombre": "Castronómica del Sur Ltda. - Observatorio del Pangue",
+        "comentario": "Un observatorio astronómico público, con telescopios potentes de ultima generación, bajo uno de los mejores cielos del mundo, con servicio personalizado pensado para un público mas exigente...",
+        "popup": "<p>\n<font size=\"+2\">Titulo</font>\n<hr><br />\ndirección por confirmar<br />\n\n</p>\n",
+        "icono": "DIRECCION_ICONO",
+        "portadas": [
+          { "src": "assets/img/observatorio-del-pangue.jpg", "comentario":"Imagen de astronomia 1"},
+          { "src": "assets/img/astronomico.jpg", "comentario":"Imagen de astronomia 2"},
+          { "src": "assets/img/astronomico.jpg", "comentario":"Imagen de astronomia 3" }
+        ]
+      }
+    },
+		{"type":"Feature","geometry":{"type":"Point","coordinates":[-70.6877581,-29.9898017]},"properties":
+      {
+        "tipo": "Sitios de interes",
+        "pais": "Chile",
+        "nombre": "Observatorio Mamalluca",
+        "comentario": "El Observatorio Cerro Mamalluca es un observatorio turístico ubicado a 9 kilómetros al nororiente de la ciudad de Vicuña (Chile). En 1994, se convirtió en el primer observatorio aficionado con fines turísticos de ese país.1 Hoy cuenta con un planetario, salas de visitas, telescopios manuales y automáticos. Su gran difusión se explica por el disco de Los Jaivas llamado Mamalluca, obra que se inspiró en el observatorio. De hecho, su pianista Claudio Parra se ha presentado dos veces en las instalaciones del observatorio. ",
+        "popup": "<p>\n<font size=\"+2\">Titulo</font>\n<hr><br />\ndirección por confirmar<br />\n\n</p>\n",
+        "icono": "DIRECCION_ICONO",
+        "portadas": [
+          { "src": "assets/img/observatorio-mamalluca.jpg", "comentario":"Imagen de astronomia 1"},
+          { "src": "assets/img/astronomico.jpg", "comentario":"Imagen de astronomia 2"},
+          { "src": "assets/img/astronomico.jpg", "comentario":"Imagen de astronomia 3" }
+        ]
+      }
+    }
+	]
+}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.oxidocs.poi" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>POI</name>
+<widget id="com.oxidocs.poi" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Poi</name>
   <description>Aplicación de guias digitales para Chile</description>
   <author email="contacto@oxidocs.com" href="http://oxidocs.com/">Oxido Creative Studio SPA.</author>
   <content src="index.html"/>
@@ -42,7 +42,7 @@
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashMaintainAspectRatio" value="true"/>
-  <preference name="FadeSplashScreenDuration" value="300"/>
+  <preference name="FadeSplashScreenDuration" value="200"/>
   <preference name="SplashShowOnlyFirstTime" value="false"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
@@ -57,5 +57,10 @@
   <plugin name="cordova-plugin-splashscreen" spec="~4.0.1"/>
   <plugin name="cordova-sqlite-storage" spec="~2.0.1"/>
   <plugin name="cordova-plugin-nativestorage" spec="~2.2.1"/>
+  <plugin name="cordova-plugin-geolocation" spec="~2.4.1"/>
+  <plugin name="cordova-plugin-facebook4" spec="~1.7.4">
+    <variable name="APP_ID" value="1224370287616350"/>
+    <variable name="APP_NAME" value="poi"/>
+  </plugin>
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
 </widget>

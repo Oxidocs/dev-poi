@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/Rx';
 */
 @Injectable()
 export class Usuario {
-url = "http://app.oxidocs.com";
+url = "http://poitour.com";
 //192.168.8.102:8000/api/api-token-auth/
   constructor(public http: Http) {
     console.log('Hello Usuario Provider');
